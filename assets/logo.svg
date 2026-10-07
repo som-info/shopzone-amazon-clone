@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="132" height="36" viewBox="0 0 132 36" role="img" aria-label="ShopZone">
+  <text x="2" y="24" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" letter-spacing="-0.5" fill="#ffffff">shop<tspan fill="#febd69">zone</tspan></text>
+  <path d="M60 29.5 L118 29.5" stroke="#febd69" stroke-width="2.6" stroke-linecap="round"/>
+  <path d="M120.5 26 l5 3.5 -5 3.5z" fill="#febd69"/>
+</svg>

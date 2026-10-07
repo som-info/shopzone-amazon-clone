@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ShopZone — Online Shopping for Electronics, Fashion, Home &amp; More</title>
+  <meta name="description" content="ShopZone is a responsive e-commerce landing page demo built with HTML, CSS and vanilla JavaScript.">
+  <meta name="theme-color" content="#131921">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header" id="top">
+    <div class="nav-main">
+      <button class="nav-hamburger icon-btn" id="menuToggle" aria-label="Open menu" aria-controls="sideMenu" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      </button>
+
+      <a href="#top" class="nav-logo nav-box" aria-label="ShopZone home">
+        <img src="assets/logo.svg" alt="ShopZone" width="132" height="36">
+      </a>
+
+      <button class="nav-location nav-box" id="locationBtn" aria-haspopup="dialog">
+        <svg class="pin" width="16" height="20" viewBox="0 0 16 20" aria-hidden="true"><path d="M8 0a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.6A2.6 2.6 0 1 1 8 4.4a2.6 2.6 0 0 1 0 5.2z" fill="currentColor"/></svg>
+        <span class="nav-line-1">Deliver to</span>
+        <span class="nav-line-2" id="locationLabel">New York 10001</span>
+      </button>
+
+      <form class="nav-search" id="searchForm" role="search" autocomplete="off">
+        <label class="visually-hidden" for="searchCategory">Search in category</label>
+        <div class="search-select-wrap">
+          <span class="search-select-label" id="searchCategoryLabel" aria-hidden="true">All</span>
+          <select id="searchCategory" class="search-select">
+            <option value="all">All Departments</option>
+            <option value="electronics">Electronics</option>
+            <option value="fashion">Fashion</option>
+            <option value="home">Home &amp; Kitchen</option>
+            <option value="gaming">Gaming</option>
+            <option value="books">Books</option>
+            <option value="sports">Sports &amp; Outdoors</option>
+          </select>
+        </div>
+        <label class="visually-hidden" for="searchInput">Search ShopZone</label>
+        <input type="search" id="searchInput" class="search-input" placeholder="Search ShopZone" enterkeyhint="search">
+        <button type="submit" class="search-submit" aria-label="Search">
+          <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>
+        </button>
+      </form>
+
+      <div class="nav-tools">
+        <button class="nav-lang nav-box" aria-label="Language: English">
+          <span class="flag" aria-hidden="true"></span><strong>EN</strong>
+          <span class="caret" aria-hidden="true"></span>
+        </button>
+
+        <div class="nav-account nav-box" tabindex="0" aria-haspopup="true">
+          <span class="nav-line-1">Hello, sign in</span>
+          <span class="nav-line-2">Account &amp; Lists <span class="caret" aria-hidden="true"></span></span>
+          <div class="account-flyout" role="menu">
+            <a href="#signin" class="btn btn-yellow flyout-signin" role="menuitem">Sign in</a>
+            <p class="flyout-new">New customer? <a href="#signin">Start here.</a></p>
+            <div class="flyout-cols">
+              <div>
+                <h3>Your Lists</h3>
+                <a href="#lists" role="menuitem">Create a List</a>
+                <a href="#lists" role="menuitem">Find a List or Registry</a>
+              </div>
+              <div>
+                <h3>Your Account</h3>
+                <a href="#account" role="menuitem">Account</a>
+                <a href="#orders" role="menuitem">Orders</a>
+                <a href="#account" role="menuitem">Recommendations</a>
+                <a href="#account" role="menuitem">ZonePlus Membership</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a href="#orders" class="nav-orders nav-box">
+          <span class="nav-line-1">Returns</span>
+          <span class="nav-line-2">&amp; Orders</span>
+        </a>
+
+        <button class="nav-cart nav-box" id="cartBtn" aria-label="Cart, 0 items" aria-controls="cartPanel" aria-expanded="false">
+          <span class="cart-icon" aria-hidden="true">
+            <svg width="40" height="32" viewBox="0 0 40 32"><path d="M2 4h6l5 18h20l4-13H11" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/><circle cx="15" cy="28" r="2.6" fill="currentColor"/><circle cx="30" cy="28" r="2.6" fill="currentColor"/></svg>
+            <span class="cart-count" id="cartCount">0</span>
+          </span>
+          <span class="nav-line-2 cart-text">Cart</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile location strip -->
+    <button class="nav-location-mobile" id="locationBtnMobile" aria-haspopup="dialog">
+      <svg width="14" height="18" viewBox="0 0 16 20" aria-hidden="true"><path d="M8 0a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.6A2.6 2.6 0 1 1 8 4.4a2.6 2.6 0 0 1 0 5.2z" fill="currentColor"/></svg>
+      <span>Deliver to <strong id="locationLabelMobile">New York 10001</strong></span>
+    </button>
+
+    <!-- Secondary nav -->
+    <nav class="nav-sub" aria-label="Departments">
+      <button class="nav-all" id="allMenuBtn" aria-controls="sideMenu" aria-expanded="false">
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+        All
+      </button>
+      <ul class="nav-sub-list">
+        <li><a href="#deals" data-filter="all">Today's Deals</a></li>
+        <li><a href="#products" data-filter="electronics">Electronics</a></li>
+        <li><a href="#products" data-filter="fashion">Fashion</a></li>
+        <li><a href="#products" data-filter="home">Home &amp; Kitchen</a></li>
+        <li><a href="#products" data-filter="gaming">Gaming</a></li>
+        <li><a href="#products" data-filter="books">Books</a></li>
+        <li><a href="#products" data-filter="sports">Sports &amp; Outdoors</a></li>
+        <li><a href="#gift-cards">Gift Cards</a></li>
+        <li><a href="#help">Customer Service</a></li>
+        <li><a href="#sell">Sell</a></li>
+      </ul>
+      <a href="#deals" class="nav-sub-promo">Shop the Fall Deal Days</a>
+    </nav>
+  </header>
+
+  <!-- ============ SIDE MENU (hamburger / All) ============ -->
+  <div class="overlay" id="overlay" hidden></div>
+  <aside class="side-menu" id="sideMenu" aria-label="Main menu" aria-hidden="true">
+    <div class="side-menu-head">
+      <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4.5" fill="currentColor"/><path d="M3 22c0-5 4-8 9-8s9 3 9 8z" fill="currentColor"/></svg>
+      <span>Hello, sign in</span>
+    </div>
+    <button class="side-menu-close icon-btn" id="menuClose" aria-label="Close menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>
+    </button>
+    <nav class="side-menu-body" aria-label="Shop by department">
+      <h2>Trending</h2>
+      <a href="#bestsellers">Best Sellers</a>
+      <a href="#deals">Today's Deals</a>
+      <a href="#products" data-filter="all">New Releases</a>
+      <h2>Shop by Department</h2>
+      <a href="#products" data-filter="electronics">Electronics</a>
+      <a href="#products" data-filter="fashion">Fashion</a>
+      <a href="#products" data-filter="home">Home &amp; Kitchen</a>
+      <a href="#products" data-filter="gaming">Gaming</a>
+      <a href="#products" data-filter="books">Books</a>
+      <a href="#products" data-filter="sports">Sports &amp; Outdoors</a>
+      <h2>Help &amp; Settings</h2>
+      <a href="#account">Your Account</a>
+      <a href="#orders">Returns &amp; Orders</a>
+      <a href="#help">Customer Service</a>
+      <a href="#signin">Sign in</a>
+    </nav>
+  </aside>
+
+  <!-- ============ CART PANEL ============ -->
+  <aside class="cart-panel" id="cartPanel" aria-label="Shopping cart" aria-hidden="true">
+    <div class="cart-panel-head">
+      <h2>Shopping Cart</h2>
+      <button class="icon-btn" id="cartClose" aria-label="Close cart">
+        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <ul class="cart-items" id="cartItems"></ul>
+    <p class="cart-empty" id="cartEmpty">Your ShopZone cart is empty. Browse today's deals and add something you love.</p>
+    <div class="cart-panel-foot">
+      <p class="cart-subtotal">Subtotal (<span id="cartSubtotalCount">0</span> items): <strong id="cartSubtotal">$0.00</strong></p>
+      <button class="btn btn-yellow btn-block" id="checkoutBtn">Proceed to checkout</button>
+      <button class="btn btn-link" id="cartClear">Clear cart</button>
+    </div>
+  </aside>
+
+  <!-- ============ LOCATION DIALOG ============ -->
+  <dialog class="location-dialog" id="locationDialog" aria-labelledby="locationTitle">
+    <form method="dialog" id="locationForm">
+      <h2 id="locationTitle">Choose your location</h2>
+      <p>Delivery options and delivery speeds may vary for different locations.</p>
+      <label for="zipInput">Enter a US ZIP code</label>
+      <div class="zip-row">
+        <input id="zipInput" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" placeholder="e.g. 94103" required>
+        <button class="btn btn-outline" value="apply">Apply</button>
+      </div>
+      <p class="zip-error" id="zipError" role="alert" hidden>Please enter a valid 5-digit ZIP code.</p>
+      <button class="btn btn-link dialog-cancel" value="cancel" formnovalidate>Cancel</button>
+    </form>
+  </dialog>
+
+  <!-- ============ MAIN ============ -->
+  <main id="main">
+    <!-- Hero carousel -->
+    <section class="hero" aria-roledescription="carousel" aria-label="Featured promotions">
+      <div class="hero-track" id="heroTrack">
+        <div class="hero-slide is-active" role="group" aria-roledescription="slide" aria-label="1 of 4">
+          <img src="assets/img/hero-electronics.jpg" alt="Laptop, wireless headphones, smartwatch and smartphone on a white desk" width="1500" height="600">
+          <div class="hero-copy">
+            <p class="hero-kicker">Tech Week</p>
+            <h2>Up to 40% off top electronics</h2>
+            <a href="#deals" class="btn btn-yellow">Shop deals</a>
+          </div>
+        </div>
+        <div class="hero-slide" role="group" aria-roledescription="slide" aria-label="2 of 4">
+          <img src="assets/img/hero-fashion.jpg" alt="Woman in a burgundy coat and sunglasses carrying shopping bags" width="1500" height="600" loading="lazy">
+          <div class="hero-copy hero-copy--light">
+            <p class="hero-kicker">New Season</p>
+            <h2>Fall fashion, fresh arrivals</h2>
+            <a href="#products" class="btn btn-yellow" data-filter="fashion">Explore styles</a>
+          </div>
+        </div>
+        <div class="hero-slide" role="group" aria-roledescription="slide" aria-label="3 of 4">
+          <img src="assets/img/hero-home.jpg" alt="Modern living room with a yellow armchair and minimalist decor" width="1500" height="600" loading="lazy">
+          <div class="hero-copy">
+            <p class="hero-kicker">Home Refresh</p>
+            <h2>Make your space feel new</h2>
+            <a href="#products" class="btn btn-yellow" data-filter="home">Shop home</a>
+          </div>
+        </div>
+        <div class="hero-slide" role="group" aria-roledescription="slide" aria-label="4 of 4">
+          <img src="assets/img/hero-kitchen.jpg" alt="Bright white kitchen with cookware, lemons and fresh flowers" width="1500" height="600" loading="lazy">
+          <div class="hero-copy">
+            <p class="hero-kicker">Kitchen Essentials</p>
+            <h2>Cook more, spend less</h2>
+            <a href="#products" class="btn btn-yellow" data-filter="home">Shop kitchen</a>
+          </div>
+        </div>
+      </div>
+      <button class="hero-arrow hero-prev" id="heroPrev" aria-label="Previous slide">
+        <svg width="28" height="56" viewBox="0 0 28 56" aria-hidden="true"><path d="M22 6 6 28l16 22" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="hero-arrow hero-next" id="heroNext" aria-label="Next slide">
+        <svg width="28" height="56" viewBox="0 0 28 56" aria-hidden="true"><path d="M6 6l16 22L6 50" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="hero-dots" id="heroDots" role="tablist" aria-label="Choose slide"></div>
+      <div class="hero-fade" aria-hidden="true"></div>
+    </section>
+
+    <!-- Category cards -->
+    <section class="cards" aria-label="Shop by category">
+      <article class="card">
+        <h2>Gaming accessories</h2>
+        <div class="card-grid">
+          <a href="#products" data-filter="gaming"><img src="assets/img/p-controller.jpg" alt="White game controller" width="360" height="360" loading="lazy"><span>Controllers</span></a>
+          <a href="#products" data-filter="electronics"><img src="assets/img/p-headphones.jpg" alt="Black over-ear headphones" width="360" height="360" loading="lazy"><span>Headsets</span></a>
+          <a href="#products" data-filter="gaming"><img src="assets/img/p-keyboard.jpg" alt="White wireless keyboard" width="360" height="360" loading="lazy"><span>Keyboards</span></a>
+          <a href="#products" data-filter="gaming"><img src="assets/img/c-gaming.jpg" alt="Purple-lit game controller" width="300" height="300" loading="lazy"><span>Gaming gear</span></a>
+        </div>
+        <a class="card-link" href="#products" data-filter="gaming">See more</a>
+      </article>
+
+      <article class="card">
+        <h2>Refresh your space</h2>
+        <div class="card-grid">
+          <a href="#products" data-filter="home"><img src="assets/img/c-plant.jpg" alt="Succulent in a mint pot" width="300" height="300" loading="lazy"><span>Decor</span></a>
+          <a href="#products" data-filter="home"><img src="assets/img/c-kitchen.jpg" alt="Couple cooking together in a kitchen" width="300" height="300" loading="lazy"><span>Kitchen</span></a>
+          <a href="#products" data-filter="home"><img src="assets/img/p-lamp.jpg" alt="Pendant lamp against a teal wall" width="360" height="360" loading="lazy"><span>Lighting</span></a>
+          <a href="#products" data-filter="home"><img src="assets/img/p-mug.jpg" alt="White ceramic mug" width="360" height="360" loading="lazy"><span>Dining</span></a>
+        </div>
+        <a class="card-link" href="#products" data-filter="home">Shop home &amp; kitchen</a>
+      </article>
+
+      <article class="card">
+        <h2>New arrivals in fashion</h2>
+        <a href="#products" class="card-single" data-filter="fashion"><img src="assets/img/c-fashion.jpg" alt="Clothing rack with neutral-tone garments" width="300" height="300" loading="lazy"></a>
+        <a class="card-link" href="#products" data-filter="fashion">See more</a>
+      </article>
+
+      <article class="card card--signin">
+        <h2>Sign in for the best experience</h2>
+        <a href="#signin" class="btn btn-yellow btn-block">Sign in securely</a>
+        <div class="card-promo">
+          <span class="zoneplus-badge zoneplus-badge--lg" aria-hidden="true">✓ZonePlus</span>
+          <p>Free fast delivery on millions of items, exclusive deals and more.</p>
+          <a href="#account" class="card-link">Try ZonePlus free for 30 days</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>Top picks in electronics</h2>
+        <div class="card-grid">
+          <a href="#products" data-filter="electronics"><img src="assets/img/p-laptop.jpg" alt="Laptop on a wooden desk" width="360" height="360" loading="lazy"><span>Laptops</span></a>
+          <a href="#products" data-filter="electronics"><img src="assets/img/p-phone.jpg" alt="Smartphone on a desk" width="360" height="360" loading="lazy"><span>Phones</span></a>
+          <a href="#products" data-filter="electronics"><img src="assets/img/p-camera.jpg" alt="Pastel pink compact camera" width="360" height="360" loading="lazy"><span>Cameras</span></a>
+          <a href="#products" data-filter="electronics"><img src="assets/img/p-speaker.jpg" alt="Fabric smart speaker" width="360" height="360" loading="lazy"><span>Smart home</span></a>
+        </div>
+        <a class="card-link" href="#products" data-filter="electronics">Discover more</a>
+      </article>
+
+      <article class="card">
+        <h2>Get fit at home</h2>
+        <a href="#products" class="card-single" data-filter="sports"><img src="assets/img/c-fitness.jpg" alt="Person lifting a barbell in a gym" width="300" height="300" loading="lazy"></a>
+        <a class="card-link" href="#products" data-filter="sports">Explore now</a>
+      </article>
+
+      <article class="card">
+        <h2>Beauty picks</h2>
+        <a href="#products" class="card-single" data-filter="fashion"><img src="assets/img/c-beauty.jpg" alt="Makeup brushes and cosmetics on a beige background" width="300" height="300" loading="lazy"></a>
+        <a class="card-link" href="#products" data-filter="fashion">Shop now</a>
+      </article>
+
+      <article class="card card--wide-mobile">
+        <h2>Toys &amp; books</h2>
+        <div class="card-grid">
+          <a href="#products" data-filter="books"><img src="assets/img/c-books.jpg" alt="Stack of business books" width="300" height="300" loading="lazy"><span>Bestselling books</span></a>
+          <a href="#products" data-filter="all"><img src="assets/img/c-toys.jpg" alt="Colorful toy figures" width="300" height="300" loading="lazy"><span>Toys</span></a>
+          <a href="#products" data-filter="sports"><img src="assets/img/p-bottle.jpg" alt="Green insulated water bottle" width="360" height="360" loading="lazy"><span>Outdoor</span></a>
+          <a href="#products" data-filter="fashion"><img src="assets/img/p-backpack.jpg" alt="Navy backpack" width="360" height="360" loading="lazy"><span>Back to school</span></a>
+        </div>
+        <a class="card-link" href="#products" data-filter="all">See more</a>
+      </article>
+    </section>
+
+    <!-- Product rows -->
+    <div id="products" class="products">
+      <div class="filter-bar" id="filterBar" hidden>
+        <p id="filterStatus" role="status" aria-live="polite"></p>
+        <button class="btn btn-outline btn-sm" id="filterReset">Clear filter</button>
+      </div>
+
+      <section class="row-section" id="deals" aria-labelledby="dealsTitle">
+        <div class="row-head">
+          <h2 id="dealsTitle">Today's deals</h2>
+          <a href="#deals" class="row-head-link">See all deals</a>
+        </div>
+        <div class="row-wrap">
+          <button class="row-arrow row-prev" aria-label="Scroll today's deals left" data-dir="-1">
+            <svg width="16" height="28" viewBox="0 0 16 28" aria-hidden="true"><path d="M13 2 3 14l10 12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <ul class="product-row" id="dealsRow" aria-label="Today's deals products"></ul>
+          <button class="row-arrow row-next" aria-label="Scroll today's deals right" data-dir="1">
+            <svg width="16" height="28" viewBox="0 0 16 28" aria-hidden="true"><path d="m3 2 10 12L3 26" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+        <p class="row-empty" hidden>No deals match your search.</p>
+      </section>
+
+      <section class="row-section" id="bestsellers" aria-labelledby="bestTitle">
+        <div class="row-head">
+          <h2 id="bestTitle">Best sellers</h2>
+          <a href="#bestsellers" class="row-head-link">Shop best sellers</a>
+        </div>
+        <div class="row-wrap">
+          <button class="row-arrow row-prev" aria-label="Scroll best sellers left" data-dir="-1">
+            <svg width="16" height="28" viewBox="0 0 16 28" aria-hidden="true"><path d="M13 2 3 14l10 12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <ul class="product-row" id="bestRow" aria-label="Best seller products"></ul>
+          <button class="row-arrow row-next" aria-label="Scroll best sellers right" data-dir="1">
+            <svg width="16" height="28" viewBox="0 0 16 28" aria-hidden="true"><path d="m3 2 10 12L3 26" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+        <p class="row-empty" hidden>No best sellers match your search.</p>
+      </section>
+      <noscript><p class="noscript">Enable JavaScript to browse deals and best sellers.</p></noscript>
+    </div>
+
+    <!-- Sign-in recommendation -->
+    <section class="signin-reco" id="signin" aria-labelledby="recoTitle">
+      <h2 id="recoTitle" class="visually-hidden">Personalized recommendations</h2>
+      <p>See personalized recommendations</p>
+      <a href="#signin" class="btn btn-yellow">Sign in</a>
+      <p class="small">New customer? <a href="#signin">Start here.</a></p>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <button class="back-to-top" id="backToTop">Back to top</button>
+
+    <div class="footer-cols">
+      <div>
+        <h2>Get to Know Us</h2>
+        <ul>
+          <li><a href="#about">About ShopZone</a></li>
+          <li><a href="#careers">Careers</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#sustainability">Sustainability</a></li>
+          <li><a href="#press">Press Center</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Make Money with Us</h2>
+        <ul>
+          <li><a href="#sell">Sell on ShopZone</a></li>
+          <li><a href="#sell">Sell Your Apps</a></li>
+          <li><a href="#affiliate">Become an Affiliate</a></li>
+          <li><a href="#advertise">Advertise Your Products</a></li>
+          <li><a href="#publish">Self-Publish with Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Payment Products</h2>
+        <ul>
+          <li><a href="#card">ShopZone Rewards Card</a></li>
+          <li><a href="#points">Shop with Points</a></li>
+          <li><a href="#reload">Reload Your Balance</a></li>
+          <li><a href="#gift-cards" id="gift-cards">Gift Cards</a></li>
+          <li><a href="#currency">Currency Converter</a></li>
+        </ul>
+      </div>
+      <div id="help">
+        <h2>Let Us Help You</h2>
+        <ul>
+          <li><a href="#account" id="account">Your Account</a></li>
+          <li><a href="#orders" id="orders">Your Orders</a></li>
+          <li><a href="#shipping">Shipping Rates &amp; Policies</a></li>
+          <li><a href="#returns">Returns &amp; Replacements</a></li>
+          <li><a href="#help">Help Center</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-brand">
+      <a href="#top" class="footer-logo"><img src="assets/logo.svg" alt="ShopZone home" width="110" height="30" loading="lazy"></a>
+      <div class="footer-pills">
+        <span class="pill">🌐 English</span>
+        <span class="pill">$ USD - U.S. Dollar</span>
+        <span class="pill">🇺🇸 United States</span>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <ul class="footer-services">
+        <li><a href="#music"><strong>ZoneMusic</strong><span>Stream millions of songs</span></a></li>
+        <li><a href="#business"><strong>ZoneBusiness</strong><span>Everything for your business</span></a></li>
+        <li><a href="#fresh"><strong>ZoneFresh</strong><span>Groceries delivered fast</span></a></li>
+        <li><a href="#cloud"><strong>ZoneCloud</strong><span>Simple photo storage</span></a></li>
+        <li><a href="#renewed"><strong>ZoneRenewed</strong><span>Like-new products you can trust</span></a></li>
+        <li><a href="#books"><strong>ZoneReads</strong><span>E-books &amp; audiobooks</span></a></li>
+      </ul>
+      <ul class="footer-legal">
+        <li><a href="#terms">Conditions of Use</a></li>
+        <li><a href="#privacy">Privacy Notice</a></li>
+        <li><a href="#cookies">Cookie Preferences</a></li>
+      </ul>
+      <p class="footer-copy">© <span id="year">2026</span> ShopZone — a portfolio project by <a href="https://github.com/som-info" target="_blank" rel="noopener">Amir Namvar</a>. Demo only: no real products are sold. Photos from <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a>.</p>
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
